@@ -1,0 +1,34 @@
+Objetivo 8: Trabajo decente y crecimiento económico
+
+	• 8.1: Sostener el crecimiento económico per cápita de acuerdo con las circunstancias nacionales y, en particular, un crecimiento del producto interno bruto de al menos un 7% anual en los países menos adelantados.
+		○ Indicador 8.1.1: Tasa de crecimiento anual del PIB real per cápita NY_GDP_PCAP.
+
+
+Goal 8:   Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all.
+
+	• 8.1 Sustain per capita economic growth in accordance with national circumstances and, in particular, at least 7 per cent gross domestic product growth per annum in the least developed countries.
+8.1.1: Annual growth rate of real GDP per capita (%) NY_GDP_PCAP
+
+
+Objetivo 10: Reducción de las desigualdades
+
+	• 10.5: mejorar la regulación y el seguimiento de los mercados e instituciones financieros globales y fortalecer la implementación de tales regulaciones.
+		○ Indicador 10.5.1: indicadores de solidez financiera, FI_FSI_FSANL -> Prestamos en mora a porcentaje de cartera bruta.
+			§  (Non-performing loans to gross loans percentage)
+
+
+
+
+	• Objective 10: Reduce inequality within and among countries.
+		○ TARGET 10.5 Improve the regulation and monitoring of global financial markets and institutions and strengthen the implementation of such regulations
+			§ Non-performing loans to total gross loans (%) FI_FSI_FSANL
+		
+
+The ratio of bank nonperforming loans to total gross loans measures bank health and efficiency by identifying problems with asset quality in the loan portfolio. A high ratio may signal deterioration of the credit portfolio.
+
+
+
+Questions: 
+
+	1. How do the annual growth rates of real GDP per capita (indicator 8.1.1) in Costa Rica and its Central American neighbors (e.g., Guatemala, Honduras, Nicaragua) relate to their respective ratios of non-performing loans to total gross loans (indicator 10.5.1)?
+Has Costa Rica's progress towards achieving Goal 8 (sustained, inclusive, and sustainable economic growth) been impacted by the ratio of non-performing loans to total gross loans (indicator 10.5.1)? If so, how?s
