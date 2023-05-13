@@ -6,7 +6,7 @@ let barChartData = {};
 let lineChartData = {};
 let maxValue;
 let maxValue_2;
-let selectedCountries = ["Costa Rica", "Panama", "Dominican Republic", "Nicaragua"];
+let selectedCountries = ["Costa Rica", "Panama", "Nicaragua", "Dominican Republic"];
 let colors = {
   "Costa Rica": [255, 100, 100],
   "Panama": [100, 255, 100],
@@ -56,6 +56,10 @@ function processData() {
         }
     }
   }
+
+  if(abs(maxValue_2) > abs(maxValue))
+    maxValue = maxValue_2
+
 }
 
 function setup() {
@@ -209,26 +213,40 @@ function displayPercentageOnHover() {
 
 function drawLineChart() {
   let paddingRight = 100;
-  let scaleY = (height - 700) / maxValue_2;
+  let scaleY = (height - 700) / maxValue;
   let lineColor;
 
   for (let country of selectedCountries) {
     lineColor = colors[country]
 
     let prevX, prevY;
+    let x, y;
+
+    let startingYearBar = barChartData[country][0].year;
+    let startingYearLine = lineChartData[country][0].year;
+    
+    x_space = startingYearLine - startingYearBar;
+    if (x_space != 0)
+      x_space = x_space + 2;
+
     for (let i = 0; i < lineChartData[country].length; i++) {
       let dataPoint = lineChartData[country][i];
-      let x = i * (width - paddingRight) / lineChartData[selectedCountries[0]].length + paddingRight / 2;
-      let y = height / 2 - dataPoint.value * scaleY;
+      let countryIndex = selectedCountries.indexOf(country);
+      x = x_space * (width - paddingRight) / barChartData[selectedCountries[0]].length + countryIndex;
+      y = height / 2 - dataPoint.value * scaleY;
 
-      if (i > 0) {
+      y = y - 100;
+
+      if (i > 0) {      
         stroke(lineColor);
         line(prevX, prevY, x, y);
       }
 
       prevX = x;
       prevY = y;
-    }
+
+      x_space++; 
+    }    
   }
 }
 
@@ -237,6 +255,3 @@ function handleDataLoad(d) {
   data = d;
   redraw();
 }
-
-
-
