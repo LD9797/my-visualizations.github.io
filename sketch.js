@@ -6,13 +6,15 @@ let barChartData = {};
 let lineChartData = {};
 let maxValue;
 let maxValue_2;
-let selectedCountries = ["Costa Rica", "Panama", "Nicaragua", "Dominican Republic"];
+let selectedCountries = ["Guatemala", "Honduras", "Nicaragua", "Costa Rica", "Panama"];
 let colors = {
-  "Costa Rica": [0, 174, 228],
-  "Panama": [228, 0, 0],
-  "Dominican Republic": [0, 228, 38],
-  "Nicaragua": [228, 220, 0]
+  "Guatemala": [102, 194, 165],
+  "Honduras": [252, 141, 98],
+  "Nicaragua": [141, 160, 203],
+  "Costa Rica": [231, 138, 195],
+  "Panama": [166, 216, 84]  
 };
+let startingYear = 2008
 
 function preload() {
   table = loadTable('Goal8.csv', 'csv', 'header');     
@@ -27,7 +29,7 @@ function processData() {
     let value = row.getNum("Value");
     let year = row.getString("Time_Detail");
 
-    if (selectedCountries.includes(country)) {
+    if (selectedCountries.includes(country) && year>=startingYear) {
       if (!barChartData.hasOwnProperty(country)) {
         barChartData[country] = [];
       }
@@ -45,7 +47,7 @@ function processData() {
     let value = row.getNum("Value");
     let year = row.getString("Time_Detail");
 
-    if (selectedCountries.includes(country)) {
+    if (selectedCountries.includes(country) && year>=startingYear) {
         if(!lineChartData.hasOwnProperty(country)){
           lineChartData[country] = []
         }
@@ -202,9 +204,9 @@ function displayPercentageOnHover() {
         fill(0);
         textAlign(CENTER);
         if(mouseY > 400)
-          text(countryData[i].value + "%", x + barWidth / 2, y + barHeight + 10);
+          text(country + " " + countryData[i].value + "%", x + barWidth / 2, y + barHeight + 10);
         else
-          text(countryData[i].value + "%", x + barWidth / 2, y - 10);
+          text(country + " " + countryData[i].value + "%", x + barWidth / 2, y - 10);
         break;
       }
     }
@@ -233,7 +235,7 @@ function drawLineChart() {
     for (let i = 0; i < lineChartData[country].length; i++) {
       let dataPoint = lineChartData[country][i];
       let countryIndex = selectedCountries.indexOf(country);
-      x = x_space * (width - paddingRight) / barChartData[selectedCountries[0]].length + countryIndex;
+      x = i * (width - paddingRight) / barChartData[selectedCountries[0]].length + countryIndex + 120;
       y = height / 2 - dataPoint.value * scaleY;
 
       y = y - 100;
