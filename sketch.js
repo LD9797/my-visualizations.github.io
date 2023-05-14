@@ -6,12 +6,13 @@ let barChartData = {};
 let lineChartData = {};
 let maxValue;
 let maxValue_2;
-let selectedCountries = ["Costa Rica", "Panama", "Nicaragua", "Dominican Republic"];
+let selectedCountries = ["Guatemala", "Honduras", "Nicaragua", "Costa Rica", "Panama"];
 let colors = {
-  "Costa Rica": [0, 174, 228],
-  "Panama": [228, 0, 0],
-  "Dominican Republic": [0, 228, 38],
-  "Nicaragua": [228, 220, 0]
+  "Guatemala": [102, 194, 165],
+  "Honduras": [252, 141, 98],
+  "Nicaragua": [141, 160, 203],
+  "Costa Rica": [231, 138, 195],
+  "Panama": [166, 216, 84]  
 };
 
 function preload() {
@@ -27,7 +28,7 @@ function processData() {
     let value = row.getNum("Value");
     let year = row.getString("Time_Detail");
 
-    if (selectedCountries.includes(country)) {
+    if (selectedCountries.includes(country) && year>=2008) {
       if (!barChartData.hasOwnProperty(country)) {
         barChartData[country] = [];
       }
@@ -45,7 +46,7 @@ function processData() {
     let value = row.getNum("Value");
     let year = row.getString("Time_Detail");
 
-    if (selectedCountries.includes(country)) {
+    if (selectedCountries.includes(country) && year>=2008) {
         if(!lineChartData.hasOwnProperty(country)){
           lineChartData[country] = []
         }
@@ -74,7 +75,6 @@ function draw() {
   drawBarChart();
   displayPercentageOnHover();
   drawLineChart();
-  drawLegend();
 }
 
 function drawYAxis() {
@@ -202,9 +202,9 @@ function displayPercentageOnHover() {
         fill(0);
         textAlign(CENTER);
         if(mouseY > 400)
-          text(countryData[i].value + "%", x + barWidth / 2, y + barHeight + 10);
+          text(country + " " + countryData[i].value + "%", x + barWidth / 2, y + barHeight + 10);
         else
-          text(countryData[i].value + "%", x + barWidth / 2, y - 10);
+          text(country + " " + countryData[i].value + "%", x + barWidth / 2, y - 10);
         break;
       }
     }
@@ -250,27 +250,6 @@ function drawLineChart() {
     }    
   }
 }
-
-
-function drawLegend() {
-  let legendX = width - 800;  // position of the legend
-  let legendY = 50; 
-  let boxSize = 20;  // size of the color box in the legend
-  
-  // List of countries and their corresponding colors
-  
-  for (let i = 0; i < selectedCountries.length; i++) {
-    fill(colors[selectedCountries[i]]);
-    noStroke();
-    rect(legendX, legendY + i * (boxSize + 5), boxSize, boxSize);  // draw a color box
-    
-    fill(0);  // color for text
-    textSize(14);
-    text(selectedCountries[i], legendX + boxSize + 80, legendY + i * (boxSize + 5) + boxSize - 8);  // draw the country name
-  }
-}
-
-
 
 // This is the callback for loaded data.
 function handleDataLoad(d) {
