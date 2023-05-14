@@ -72,8 +72,9 @@ function draw() {
   
   drawYAxis();
   drawBarChart();
-  displayPercentageOnHover() 
+  displayPercentageOnHover();
   drawLineChart();
+  drawLegend();
 }
 
 function drawYAxis() {
@@ -249,6 +250,27 @@ function drawLineChart() {
     }    
   }
 }
+
+
+function drawLegend() {
+  let legendX = width - 800;  // position of the legend
+  let legendY = 50; 
+  let boxSize = 20;  // size of the color box in the legend
+  
+  // List of countries and their corresponding colors
+  
+  for (let i = 0; i < selectedCountries.length; i++) {
+    fill(colors[selectedCountries[i]]);
+    noStroke();
+    rect(legendX, legendY + i * (boxSize + 5), boxSize, boxSize);  // draw a color box
+    
+    fill(0);  // color for text
+    textSize(14);
+    text(selectedCountries[i], legendX + boxSize + 80, legendY + i * (boxSize + 5) + boxSize - 8);  // draw the country name
+  }
+}
+
+
 
 // This is the callback for loaded data.
 function handleDataLoad(d) {
