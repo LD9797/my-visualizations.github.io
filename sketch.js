@@ -8,10 +8,10 @@ let maxValue;
 let maxValue_2;
 let selectedCountries = ["Costa Rica", "Panama", "Nicaragua", "Dominican Republic"];
 let colors = {
-  "Costa Rica": [255, 100, 100],
-  "Panama": [100, 255, 100],
-  "Dominican Republic": [100, 100, 255],
-  "Nicaragua": [100, 100, 100]
+  "Costa Rica": [0, 174, 228],
+  "Panama": [228, 0, 0],
+  "Dominican Republic": [0, 228, 38],
+  "Nicaragua": [228, 220, 0]
 };
 
 function preload() {
