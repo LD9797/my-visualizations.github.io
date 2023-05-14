@@ -224,14 +224,6 @@ function drawLineChart() {
 
     let prevX, prevY;
     let x, y;
-
-    let startingYearBar = barChartData[country][0].year;
-    let startingYearLine = lineChartData[country][0].year;
-    
-    x_space = startingYearLine - startingYearBar;
-    if (x_space != 0)
-      x_space = x_space + 2;
-
     for (let i = 0; i < lineChartData[country].length; i++) {
       let dataPoint = lineChartData[country][i];
       let countryIndex = selectedCountries.indexOf(country);
@@ -247,8 +239,6 @@ function drawLineChart() {
 
       prevX = x;
       prevY = y;
-
-      x_space++; 
     }    
   }
 }
