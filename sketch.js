@@ -65,7 +65,7 @@ function processData() {
 }
 
 function setup() {
-  createCanvas(1200, 1000);
+  createCanvas(1200, 1000, SVG);
   processData();
 }
 
@@ -77,6 +77,8 @@ function draw() {
   displayPercentageOnHover();
   drawLineChart();
   drawLegend();
+  save("visualization.svg");
+  noLoop();
 }
 
 function drawYAxis() {
