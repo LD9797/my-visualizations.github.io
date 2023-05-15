@@ -6,13 +6,14 @@ let barChartData = {};
 let lineChartData = {};
 let maxValue;
 let maxValue_2;
-let selectedCountries = ["Guatemala", "Honduras", "Nicaragua", "Costa Rica", "Panama"];
+let selectedCountries = ["Guatemala", "Honduras", "El Salvador","Nicaragua", "Costa Rica", "Panama"];
 let colors = {
-  "Guatemala": [102, 194, 165],
-  "Honduras": [252, 141, 98],
-  "Nicaragua": [141, 160, 203],
-  "Costa Rica": [231, 138, 195],
-  "Panama": [166, 216, 84]  
+  "Guatemala": [113, 158, 218],
+  "Honduras": [138, 201, 138],
+  "El Salvador": [254, 178, 76],
+  "Nicaragua": [179, 155, 221],
+  "Costa Rica": [242, 138, 174],
+  "Panama": [200, 200, 200]  
 };
 let startingYear = 2008
 
@@ -65,7 +66,7 @@ function processData() {
 }
 
 function setup() {
-  createCanvas(1200, 1000);
+  createCanvas(1200, 1000, SVG);
   processData();
 }
 
@@ -77,6 +78,8 @@ function draw() {
   displayPercentageOnHover();
   drawLineChart();
   drawLegend();
+  //save("visualization.svg");
+  //noLoop();
 }
 
 function drawYAxis() {
@@ -224,14 +227,6 @@ function drawLineChart() {
 
     let prevX, prevY;
     let x, y;
-
-    let startingYearBar = barChartData[country][0].year;
-    let startingYearLine = lineChartData[country][0].year;
-    
-    x_space = startingYearLine - startingYearBar;
-    if (x_space != 0)
-      x_space = x_space + 2;
-
     for (let i = 0; i < lineChartData[country].length; i++) {
       let dataPoint = lineChartData[country][i];
       let countryIndex = selectedCountries.indexOf(country);
@@ -247,8 +242,6 @@ function drawLineChart() {
 
       prevX = x;
       prevY = y;
-
-      x_space++; 
     }    
   }
 }
