@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div id="my_dataviz"></div>
+    <svg width="600" height="500"></svg>
+    <script src="sketchD3.js"></script>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(findElements, 20);        
+    });
+
+    function findElements(){        
+        var found = false;
+    $('g').each(function() {
+        if ($(this).attr('fill') === 'none' && 
+            $(this).attr('font-size') === '10' && 
+            $(this).attr('font-family') === 'sans-serif' &&
+            $(this).attr('text-anchor') === 'end') {
+            // Found the element
+            found = true;
+
+            // Look for child <g> elements
+            $(this).find('g').each(function() {
+                // Look for the <text> elements inside those <g> elements
+                var counterValue = 20; 
+                $(this).find('text').each(function() {
+                    var currentValue = parseFloat($(this).text());
+                    if (!isNaN(currentValue)) { 
+                        // Make the value negative
+                        var newValue = (-currentValue + counterValue) * -1;  // 
+                        $(this).text(newValue.toString());  // Replace the old 
+                        counterValue -= 1;
+                    }
+                });
+            });
+
+            // Move the element 370 pixels down
+            $(this).attr('transform', 'translate(0, 370)');
+
+            return false;  // Break the outer .each loop
+        }
+    });
+    
+    if (!found) {
+        console.log('No matching elements found.');
+    }}
+    </script>
+</html>
