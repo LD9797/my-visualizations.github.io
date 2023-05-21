@@ -77,8 +77,8 @@ function draw() {
   displayPercentageOnHover();
   drawLineChart();
   drawLegend();
-  save("visualization.svg");
-  noLoop();
+  // save("visualization.svg");
+  // noLoop();
 }
 
 function drawYAxis() {
